@@ -298,8 +298,8 @@ VERSION=0.3.4
 
 docker build -t amplify-cli-action:$VERSION .
 
-docker tag amplify-cli-action:$VERSION docker.pkg.github.com/johnf/amplify-cli-action/amplify-cli-action:$VERSION
+docker tag amplify-cli-action:$VERSION ghcr.io/johnf/amplify-cli-action/amplify-cli-action:$VERSION
 
-docker push docker.pkg.github.com/johnf/amplify-cli-action/amplify-cli-action:$VERSION
+docker push ghcr.io/johnf/amplify-cli-action/amplify-cli-action:$VERSION
 
 ```
