@@ -1,0 +1,1 @@
+{"version":3,"file":"iam.d.ts","sourceRoot":"","sources":["../../../src/CFNParser/resource-processors/iam.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,0BAA0B,EAAE,MAAM,UAAU,CAAC;AAEtD,wBAAgB,wBAAwB,CAAC,YAAY,KAAA,EAAE,QAAQ,KAAA,EAAE,UAAU,EAAE,0BAA0B;;;EAMtG;AAED,wBAAgB,sBAAsB,CAAC,YAAY,KAAA,EAAE,QAAQ,KAAA,EAAE,UAAU,EAAE,0BAA0B;;;;;;;;EAQpG"}

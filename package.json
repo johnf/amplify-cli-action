@@ -2,10 +2,9 @@
   "name": "amplify-cli-action",
   "version": "0.3.0",
   "description": "AWS Amplify CLI support for github actions. This action supports configuring and deploying your project to AWS as well as creating and undeploying amplify environments.",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build index.js --license license.txt"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,6 @@
     "@aws-amplify/cli": "^4.52.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.6",
     "eslint": "^7.28.0"
   }
 }
