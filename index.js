@@ -39,11 +39,11 @@ try {
   // otherwise install globally latest npm version
   // FIXME: weird: using local dep amplify-cli bugs with awscloudformation provider: with using provider underfined
   if(amplifyCliVersion) {
-    execSync(`npm install @aws-amplify/cli@${amplifyCliVersion}`);
+    execSync(`cd ../_actions; npm install @aws-amplify/cli@${amplifyCliVersion}`);
   }
 
   const cmd = `${process.cwd()}/node_modules/.bin/amplify`;
-  const out = execSync(`ls ../_actions`);
+  const out = execSync(`echo MOO ..; ls ..; echo MOO ../..; ls ../..`);
   console.log(out.toString());
 
   // cd to project_dir if custom subfolder is specified
