@@ -38,8 +38,10 @@ try {
   // if amplify if available at path and custom amplify version is unspecified, do nothing,
   // otherwise install globally latest npm version
   // FIXME: weird: using local dep amplify-cli bugs with awscloudformation provider: with using provider underfined
-  if(!amplifyCliVersion) {
-    execSync(`npm install -g @aws-amplify/cli@${amplifyCliVersion}`);
+  console.log('MOO');
+  console.log(amplifyCliVersion);
+  if(amplifyCliVersion) {
+    execSync(`npm install @aws-amplify/cli@${amplifyCliVersion}`);
   }
 
   // cd to project_dir if custom subfolder is specified
