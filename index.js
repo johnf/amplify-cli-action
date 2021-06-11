@@ -43,6 +43,8 @@ try {
   }
 
   const cmd = `${process.cwd()}/node_modules/.bin/amplify`;
+  console.log(__dirname);
+// Prints: /Users/mjr
   const out = execSync(`echo MOO ..; ls ..; echo MOO ../..; ls ../..`);
   console.log(out.toString());
 
