@@ -34,18 +34,8 @@ inputs:
     required: false
     default: ''
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.project_dir }}
-    - ${{ inputs.source_dir }}
-    - ${{ inputs.distribution_dir }}
-    - ${{ inputs.build_command }}
-    - ${{ inputs.amplify_command }}
-    - ${{ inputs.amplify_env }}
-    - ${{ inputs.delete_lock }}
-    - ${{ inputs.amplify_cli_version }}
-    - ${{ inputs.amplify_arguments }}
+  using: 'node12'
+  main: 'index.js'
 branding:
   icon: 'git-commit'
   color: 'orange'
