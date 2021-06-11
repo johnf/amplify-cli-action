@@ -43,7 +43,7 @@ try {
   }
 
   const cmd = `${process.cwd()}/node_modules/.bin/amplify`;
-  const out = execSync(`ls; ls ..; ls ../..; ls /`);
+  const out = execSync(`ls ../_actions`);
   console.log(out.toString());
 
   // cd to project_dir if custom subfolder is specified
