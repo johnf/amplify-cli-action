@@ -68,7 +68,7 @@ try {
       break;
 
     case 'configure':
-      awsConfigFilePath = `${process.cwd()})/aws_config_file_path.json`;
+      awsConfigFilePath = `${process.cwd()}/aws_config_file_path.json`;
 
       fs.writeFileSync(awsConfigFilePath, `{ "accessKeyId": "${process.env.AWS_ACCESS_KEY_ID}", "secretAccessKey": "${process.env.AWS_SECRET_ACCESS_KEY}", "region": "${process.env.AWS_REGION}" }`);
       fs.writeFileSync('./amplify/.config/local-aws-info.json', `{ "projectPath": "${process.cwd()}", "defaultEditor": "code", "envName": "${amplifyEnv}" }`);
