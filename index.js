@@ -38,8 +38,6 @@ try {
   // if amplify if available at path and custom amplify version is unspecified, do nothing,
   // otherwise install globally latest npm version
   // FIXME: weird: using local dep amplify-cli bugs with awscloudformation provider: with using provider underfined
-  console.log('MOO');
-  console.log(amplifyCliVersion);
   if(amplifyCliVersion) {
     execSync(`npm install @aws-amplify/cli@${amplifyCliVersion}`);
   }
@@ -72,9 +70,9 @@ try {
     case 'configure':
       awsConfigFilePath = `${process.cwd()})/aws_config_file_path.json`;
 
-      fs.writeSync(awsConfigFilePath, `{ "accessKeyId": "${process.env.AWS_ACCESS_KEY_ID}", "secretAccessKey": "${process.env.AWS_SECRET_ACCESS_KEY}", "region": "${process.env.AWS_REGION}" }`);
-      fs.writeSync('./amplify/.config/local-aws-info.json', `{ "projectPath": "${process.cwd()}", "defaultEditor": "code", "envName": "${amplifyEnv}" }`);
-      fs.writeSync('./amplify/.config/local-aws-info.json', `{ "${amplifyEnv}" : { "configLevel": "project", "useProfile": false, "awsConfigFilePath": "${awsConfigFilePath}" } }`);
+      fs.writeFileSync(awsConfigFilePath, `{ "accessKeyId": "${process.env.AWS_ACCESS_KEY_ID}", "secretAccessKey": "${process.env.AWS_SECRET_ACCESS_KEY}", "region": "${process.env.AWS_REGION}" }`);
+      fs.writeFileSync('./amplify/.config/local-aws-info.json', `{ "projectPath": "${process.cwd()}", "defaultEditor": "code", "envName": "${amplifyEnv}" }`);
+      fs.writeFileSync('./amplify/.config/local-aws-info.json', `{ "${amplifyEnv}" : { "configLevel": "project", "useProfile": false, "awsConfigFilePath": "${awsConfigFilePath}" } }`);
 
       // if environment doesn't exist fail explicitly
       output = execSync(`npm run amplify env get --name ${amplifyEnv}`);
@@ -129,7 +127,7 @@ try {
 
       // fill in dummy env in local-env-info so we delete current environment
       // without switch to another one (amplify restriction)
-      fs.writeSync('./amplify/.config/local-env-info.json', `{ "projectPath": "${process.cwd()}", "defaultEditor": "code", "envName": "dummyenvfordeletecurrentowork" }`);
+      fs.writeFileSync('./amplify/.config/local-env-info.json', `{ "projectPath": "${process.cwd()}", "defaultEditor": "code", "envName": "dummyenvfordeletecurrentowork" }`);
       output = execSync(`npm run amplify env remove ${amplifyEnv} ${amplifyArguments}`, { input: 'Y' });
       console.log(output);
       break;
