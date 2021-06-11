@@ -42,28 +42,30 @@ try {
     execSync(`npm install @aws-amplify/cli@${amplifyCliVersion}`);
   }
 
+  const cmd = `${process.cwd()}/node_modules/.bin/amplify`;
+
   // cd to project_dir if custom subfolder is specified
   if(projectDir) {
     process.chdir(projectDir);
   }
 
-  const version = execSync('npm run amplify --version');
+  const version = execSync(`${cmd} --version`);
   console.log(`amplify version ${version}`);
 
   let output, awsConfigFilePath, amplify, providers;
   switch (amplifyCommand) {
     case 'push':
-      output = execSync(`npm run amplify push ${amplifyArguments} --yes`);
+      output = execSync(`${cmd} push ${amplifyArguments} --yes`);
       console.log(output);
       break;
 
     case 'publish':
-      output = execSync(`npm run amplify push ${amplifyArguments} --yes`);
+      output = execSync(`${cmd} push ${amplifyArguments} --yes`);
       console.log(output);
       break;
 
     case 'status':
-      output = execSync(`npm run amplify status ${amplifyArguments}`);
+      output = execSync(`${cmd} status ${amplifyArguments}`);
       console.log(output);
       break;
 
@@ -75,18 +77,18 @@ try {
       fs.writeFileSync('./amplify/.config/local-aws-info.json', `{ "${amplifyEnv}" : { "configLevel": "project", "useProfile": false, "awsConfigFilePath": "${awsConfigFilePath}" } }`);
 
       // if environment doesn't exist fail explicitly
-      output = execSync(`npm run amplify env get --name ${amplifyEnv}`);
+      output = execSync(`${cmd} env get --name ${amplifyEnv}`);
       if (output.match(/No environment found/)) {
         core.setFailed(`${amplifyEnv} environment does not exist, consider using add_env command instead`);
         return;
       }
 
       console.log(`found existing environment ${amplifyEnv}`);
-      output = execSync(`npm run amplify env pull --yes ${amplifyArguments}`);
+      output = execSync(`${cmd} env pull --yes ${amplifyArguments}`);
       console.log(output);
 
 
-      output = execSync('npm run amplify status');
+      output = execSync(`${cmd} status`);
       console.log(output);
       break;
 
@@ -105,10 +107,10 @@ try {
         }
       `;
 
-      output = execSync(`npm run amplify env add ${amplifyArguments} --amplify "${amplify}" --providers "${providers}" --yes`);
+      output = execSync(`${cmd} env add ${amplifyArguments} --amplify "${amplify}" --providers "${providers}" --yes`);
       console.log(output);
 
-      output = execSync('npm run amplify status');
+      output = execSync(`${cmd} status`);
       console.log(output);
       break;
 
@@ -128,7 +130,7 @@ try {
       // fill in dummy env in local-env-info so we delete current environment
       // without switch to another one (amplify restriction)
       fs.writeFileSync('./amplify/.config/local-env-info.json', `{ "projectPath": "${process.cwd()}", "defaultEditor": "code", "envName": "dummyenvfordeletecurrentowork" }`);
-      output = execSync(`npm run amplify env remove ${amplifyEnv} ${amplifyArguments}`, { input: 'Y' });
+      output = execSync(`${cmd} env remove ${amplifyEnv} ${amplifyArguments}`, { input: 'Y' });
       console.log(output);
       break;
 
