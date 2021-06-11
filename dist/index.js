@@ -595,7 +595,7 @@ try {
   }
 
   // cd to project_dir if custom subfolder is specified
-  if(!projectDir) {
+  if(projectDir) {
     process.chdir(projectDir);
   }
 
